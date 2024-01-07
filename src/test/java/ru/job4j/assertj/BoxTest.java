@@ -45,7 +45,7 @@ class BoxTest {
     @Test
     void whatsAreaCube() {
         Box box = new Box(8, 2);
-        double result = Math.round(box.getArea() / 0.01d) * 0.01d;
+        double result = box.getArea();
         assertThat(result).isNotZero()
                 .isPositive()
                 .isGreaterThan(23d)
