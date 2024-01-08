@@ -34,12 +34,12 @@ class BoxTest {
     @Test
     void whatsAreaTetrahedron() {
         Box box = new Box(4, 1);
-        double result = Math.round(box.getArea() / 0.01d) * 0.01d;
+        double result = box.getArea();
         assertThat(result).isNotZero()
                 .isPositive()
                 .isGreaterThan(1.72d)
                 .isLessThan(1.74d)
-                .isEqualTo(1.73d);
+                .isEqualTo(1.73d, withPrecision(0.01d));
     }
 
     @Test
@@ -56,12 +56,12 @@ class BoxTest {
     @Test
     void whatsAreaSphere() {
         Box box = new Box(0, 2);
-        double result = Math.round(box.getArea() / 0.01d) * 0.01d;
+        double result = box.getArea();
         assertThat(result).isNotZero()
                 .isPositive()
                 .isGreaterThan(50.26d)
                 .isLessThan(50.28d)
-                .isEqualTo(50.27d);
+                .isEqualTo(50.27d, withPrecision(0.01d));
     }
 
     @Test
