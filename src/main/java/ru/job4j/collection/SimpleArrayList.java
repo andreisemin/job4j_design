@@ -16,11 +16,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         container = (T[]) new Object[capacity];
     }
 
-    private void validateIndex(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-    }
 
     private void ensureCapacity(int minCapacity) {
         if (minCapacity > container.length) {
@@ -38,7 +33,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T set(int index, T newValue) {
-        validateIndex(index);
+        Objects.checkIndex(index, size);
         T oldValue = (T) container[index];
         container[index] = newValue;
         return oldValue;
@@ -46,7 +41,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T remove(int index) {
-        validateIndex(index);
+        Objects.checkIndex(index, size);
         T removedValue = (T) container[index];
         System.arraycopy(container, index + 1, container, index, size - index - 1);
         container[--size] = null;
@@ -56,7 +51,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T get(int index) {
-        validateIndex(index);
+        Objects.checkIndex(index, size);
         return (T) container[index];
     }
 
