@@ -33,9 +33,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     private boolean check(K key) {
         boolean rsl = false;
         int index = basket(key);
-        if (table[index] != null && key != null && table[index].key != null
-                && key.hashCode() == table[index].key.hashCode()
-                || table[index] != null && Objects.equals(table[index].key, key)) {
+        if (table[index] != null && Objects.equals(table[index].key, key)) {
             rsl = true;
         }
         return rsl;
