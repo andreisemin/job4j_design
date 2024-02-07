@@ -27,16 +27,13 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private int basket(K key) {
-        return key == null ? 0 : indexFor(hash(key.hashCode()));
+        return key == null ? 0 : indexFor(hash(Objects.hashCode(key)));
     }
 
     private boolean check(K key) {
-        boolean rsl = false;
         int index = basket(key);
-        if (table[index] != null && Objects.equals(table[index].key, key)) {
-            rsl = true;
-        }
-        return rsl;
+        return table[index] != null && Objects.hashCode(table[index].key) == Objects.hashCode(key)
+                && Objects.equals(table[index].key, key);
     }
 
     private void expand() {
